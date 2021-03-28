@@ -1,0 +1,11 @@
+/home/benh/Documents/RustPractice/tui_test/target/debug/deps/unicode_segmentation-1052d6cf0d3e02a7.rmeta: /home/benh/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.6.0/src/lib.rs /home/benh/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.6.0/src/grapheme.rs /home/benh/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.6.0/src/tables.rs /home/benh/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.6.0/src/word.rs /home/benh/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.6.0/src/sentence.rs
+
+/home/benh/Documents/RustPractice/tui_test/target/debug/deps/libunicode_segmentation-1052d6cf0d3e02a7.rlib: /home/benh/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.6.0/src/lib.rs /home/benh/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.6.0/src/grapheme.rs /home/benh/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.6.0/src/tables.rs /home/benh/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.6.0/src/word.rs /home/benh/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.6.0/src/sentence.rs
+
+/home/benh/Documents/RustPractice/tui_test/target/debug/deps/unicode_segmentation-1052d6cf0d3e02a7.d: /home/benh/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.6.0/src/lib.rs /home/benh/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.6.0/src/grapheme.rs /home/benh/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.6.0/src/tables.rs /home/benh/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.6.0/src/word.rs /home/benh/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.6.0/src/sentence.rs
+
+/home/benh/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.6.0/src/lib.rs:
+/home/benh/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.6.0/src/grapheme.rs:
+/home/benh/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.6.0/src/tables.rs:
+/home/benh/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.6.0/src/word.rs:
+/home/benh/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.6.0/src/sentence.rs:
