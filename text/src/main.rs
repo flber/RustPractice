@@ -1,14 +1,60 @@
 use core::ops::Range;
 
 fn main() {
-	let test = String::from(" This  is		a test.");
+	let test = String::from("[ h1 | This is a header ]");
+	let content: String = parse(&test, 0, Vec::<String>::new());
 
-	let first = first(&test);
-    println!("first: {}@{}", first.0, first.1);
-    let first_from = first_from(&test, 5);
-    println!("first_from: {}@{}", first_from.0, first_from.1);
-    let last_from = last_from(&test, 7);
-    println!("last_from: {}@{}", last_from.0, last_from.1);
+    println!("new: {}", content);
+}
+
+fn parse(s: &String, i: usize, mut elems: Vec<String>) -> String {
+	let mut t = s.clone();
+	if i == len(&t) {
+		return t.to_string();
+	} else {
+		let char = &slice(&t, i..i+1)[..];
+		match char {
+			"[" => {
+				t = remove(&t, i, i+1);
+				t = insert(&t, i, "<");
+
+				let next = first_from(&t, i+1).1;
+				t = remove(&t, i+1, next);
+				let mut j = i+1;
+				let elem = slice(&t, i+1..loop {
+					let check = slice(&t, j..j+1);
+					if check == "," || check == " " || check == "|" {
+						break j;
+					}
+					j += 1;
+				});
+				elems.push(elem);
+			},
+			"|" => {
+				t = remove(&t, i, 1);
+				t = insert(&t, i, ">");
+			}
+			"]" => {
+				t = remove(&t, i, i+1);
+				let elem = match elems.pop() {
+					Some(e) => e,
+					None => String::from(""),
+				};
+				let end_tag = &format!("</{}>", elem);
+				t = insert(&t, i, end_tag);
+			}
+			_ => {
+				let next = first_from(&t, i+1);
+				match &next.0[..] {
+					"|" => {
+						t = remove(&t, i+1, next.1);
+					},
+					_ => (),
+				}
+			},
+		}
+		parse(&t, i+1, elems)
+	}
 }
 
 /*
@@ -114,4 +160,26 @@ pub fn remove(s: &String, idx: usize, l: usize) -> String {
     let second = slice(&s, idx + l..len(&s));
 
     [first, second].concat()
+}
+
+/*
+inserts str into string, preserving graphemes
+*/
+pub fn insert(s: &String, idx: usize, ins: &str) -> String {
+    assert!(idx <= len(&s), "the index was larger than the target slice");
+    let ins_len = len(&ins.to_string());
+    let fin_len = len(&s) + ins_len;
+    let mut r = String::with_capacity(fin_len);
+    for i in 0..fin_len {
+        if i < idx {
+            r.push_str(&slice(&s, i..i + 1));
+        } else if i < idx + ins_len {
+            let i_ins = i - idx;
+            r.push_str(&slice(&ins.to_string(), i_ins..i_ins + 1));
+        } else {
+            let a_ins = i - ins_len;
+            r.push_str(&slice(&s, a_ins..a_ins + 1));
+        }
+    }
+    r
 }
