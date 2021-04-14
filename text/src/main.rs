@@ -1,7 +1,9 @@
 use core::ops::Range;
 
 fn main() {
-	let test = String::from("[ h1 | This is a header ]");
+	//                                 111111111122222222223333
+	//                       0123456789012345678901234567890123
+	let test = String::from("[ h1 | This is a [ em | header ] ]");
 	let content: String = parse(&test, 0, Vec::<String>::new());
 
     println!("new: {}", content);
@@ -15,12 +17,13 @@ fn parse(s: &String, i: usize, mut elems: Vec<String>) -> String {
 		let char = &slice(&t, i..i+1)[..];
 		match char {
 			"[" => {
-				t = remove(&t, i, i+1);
+				println!("[: ({}) {}", char, t);
+				t = remove(&t, i, 1);
 				t = insert(&t, i, "<");
 
 				let next = first_from(&t, i+1).1;
 				t = remove(&t, i+1, next);
-				let mut j = i+1;
+				let mut j = i;
 				let elem = slice(&t, i+1..loop {
 					let check = slice(&t, j..j+1);
 					if check == "," || check == " " || check == "|" {
@@ -31,11 +34,13 @@ fn parse(s: &String, i: usize, mut elems: Vec<String>) -> String {
 				elems.push(elem);
 			},
 			"|" => {
+				println!("|: ({}) {}", char, t);
 				t = remove(&t, i, 1);
 				t = insert(&t, i, ">");
 			}
 			"]" => {
-				t = remove(&t, i, i+1);
+				println!("]: ({}) {}", char, t);
+				t = remove(&t, i, 1);
 				let elem = match elems.pop() {
 					Some(e) => e,
 					None => String::from(""),
@@ -44,9 +49,11 @@ fn parse(s: &String, i: usize, mut elems: Vec<String>) -> String {
 				t = insert(&t, i, end_tag);
 			}
 			_ => {
+				println!("_: ({}) {}", char, t);
 				let next = first_from(&t, i+1);
 				match &next.0[..] {
 					"|" => {
+						println!("_|: ({}) {}", next.0, t);
 						t = remove(&t, i+1, next.1);
 					},
 					_ => (),
